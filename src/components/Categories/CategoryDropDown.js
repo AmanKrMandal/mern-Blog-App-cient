@@ -3,23 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { fetchCategoriesAction } from "../../redux/slices/category/categorySlice";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
-const CategoryDropDown = props => {
+const CategoryDropDown = (props) => {
   //dispatch action
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCategoriesAction());
   }, [dispatch]);
   //select categories
-  const category = useSelector(state => state?.category);
-  const { categoryList, loading, appErr, serverErr } = category;
+  const category = useSelector((state) => state?.category);
+  const { categoryList, loading } = category;
 
-  const allCategories = categoryList?.map(category => {
+  const allCategories = categoryList?.map((category) => {
     return {
       label: category?.title,
       value: category?._id,
@@ -27,7 +21,7 @@ const CategoryDropDown = props => {
   });
 
   //handleChange
-  const handleChange = value => {
+  const handleChange = (value) => {
     props.onChange("category", value);
   };
   //handleBlur

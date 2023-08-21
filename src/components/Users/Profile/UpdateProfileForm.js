@@ -28,19 +28,19 @@ const UpdateProfileForm = ({
   }, [dispatch, id]);
 
   //get user from store
-  const users = useSelector(state => state.users);
+  const users = useSelector((state) => state.users);
   const { userDetails, isUpdated, loading, appErr, serverErr } = users;
 
   //formik
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      firstName: userDetails?.firstName,
-      lastName: userDetails?.lastName,
-      email: userDetails?.email,
-      bio: userDetails?.bio,
+      firstName: userDetails?.firstName || "",
+      lastName: userDetails?.lastName || "",
+      email: userDetails?.email || "",
+      bio: userDetails?.bio || "",
     },
-    onSubmit: values => {
+    onSubmit: (values) => {
       //dispath the action
       dispatch(updateUserAction(values));
     },
@@ -154,8 +154,9 @@ const UpdateProfileForm = ({
               </label>
               <textarea
                 value={formik.values.bio}
-                onChange={formik.handleChange("bio")}
-                onBlur={formik.handleBlur("bio")}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                name="bio"
                 rows="5"
                 cols="10"
                 className="rounded-lg appearance-none block w-full py-3 px-3 text-base text-center leading-tight text-gray-600 bg-transparent focus:bg-transparent  border border-gray-200 focus:border-gray-500  focus:outline-none"

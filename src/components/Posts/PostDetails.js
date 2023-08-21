@@ -19,18 +19,18 @@ const PostDetails = ({
   const dispatch = useDispatch();
 
   //select post details from store
-  const post = useSelector(state => state?.post);
+  const post = useSelector((state) => state?.post);
   const { postDetails, loading, appErr, serverErr, isDeleted } = post;
 
   //comment
-  const comment = useSelector(state => state.comment);
+  const comment = useSelector((state) => state.comment);
   const { commentCreated, commentDeleted } = comment;
   useEffect(() => {
     dispatch(fetchPostDetailsAction(id));
   }, [id, dispatch, commentCreated, commentDeleted]);
 
   //Get login user
-  const user = useSelector(state => state.users);
+  const user = useSelector((state) => state.users);
   const { userAuth } = user;
 
   const isCreatedBy = postDetails?.user?._id === userAuth?._id;
@@ -83,23 +83,26 @@ const PostDetails = ({
                 </div>
               </div>
               {/* Post description */}
-              <div class="max-w-xl mx-auto">
-                <p class="mb-6 text-left  text-xl text-gray-200">
+              <div className="max-w-xl mx-auto">
+                <p className="mb-6 text-left  text-xl text-gray-200">
                   {postDetails?.description}
 
                   {/* Show delete and update  if it was created by the user */}
                   {isCreatedBy ? (
-                    <p class="flex">
-                      <Link to={`/update-post/${postDetails?._id}`} class="p-3">
-                        <PencilAltIcon class="h-8 mt-3 text-yellow-300" />
+                    <p className="flex">
+                      <Link
+                        to={`/update-post/${postDetails?._id}`}
+                        className="p-3"
+                      >
+                        <PencilAltIcon className="h-8 mt-3 text-yellow-300" />
                       </Link>
                       <button
                         onClick={() =>
                           dispatch(deletePostAction(postDetails?._id))
                         }
-                        class="ml-3"
+                        className="ml-3"
                       >
-                        <TrashIcon class="h-8 mt-3 text-red-600" />
+                        <TrashIcon className="h-8 mt-3 text-red-600" />
                       </button>
                     </p>
                   ) : null}

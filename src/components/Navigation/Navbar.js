@@ -10,7 +10,7 @@ import PublicNavbar from "./Public/PublicNavbar";
 const Navbar = () => {
   //get user from store
   const state = useSelector((state) => state.users);
-  const { userAuth, profile } = state;
+  const { userAuth } = state;
   const isAdmin = userAuth?.isAdmin;
 
   //account verification
@@ -26,9 +26,7 @@ const Navbar = () => {
         <PublicNavbar />
       )}
       {/* Display alert */}
-      {userAuth && !profile?.isAccountVerified && (
-        <AccountVerificationAlertWarning />
-      )}
+      {userAuth && !userAuth.isVerified && <AccountVerificationAlertWarning />}
       {/* display success msg */}
       {loading && <h2 className="text-center">Loading please wait...</h2>}
       {token && <AccountVerificationSuccessAlert />}

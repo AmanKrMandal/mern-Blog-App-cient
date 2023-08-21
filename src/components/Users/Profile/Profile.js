@@ -240,7 +240,7 @@ export default function Profile(props) {
                             <h1>No Viewer</h1>
                           ) : (
                             profile?.viewedBy?.map((user) => (
-                              <li>
+                              <li key={user.id}>
                                 {/* <Link> */}
                                 <div className="flex mb-2 items-center space-x-4 lg:space-x-6">
                                   <img
@@ -273,25 +273,28 @@ export default function Profile(props) {
                           <h2 className="text-center text-xl">No Post Found</h2>
                         ) : (
                           profile?.posts?.map((post) => (
-                            <div className="flex flex-wrap  -mx-3 mt-3  lg:mb-6">
+                            <div
+                              className="flex flex-wrap  -mx-3 mt-3  lg:mb-6"
+                              key={post.id}
+                            >
                               <div className="mb-2   w-full lg:w-1/4 px-3">
-                                <Link>
-                                  <img
-                                    className="object-cover h-40 rounded"
-                                    src={post?.image}
-                                    alt="poster"
-                                  />
-                                </Link>
+                                {/* <Link> */}
+                                <img
+                                  className="object-cover h-40 rounded"
+                                  src={post?.image}
+                                  alt="poster"
+                                />
+                                {/* </Link> */}
                               </div>
                               <div className="w-full lg:w-3/4 px-3">
-                                <Link
+                                {/* <Link
                                   // to={`/post/${post?._id}`}
                                   className="hover:underline"
-                                >
-                                  <h3 className="mb-1 text-2xl text-green-600 font-bold font-heading">
-                                    {post?.title}
-                                  </h3>
-                                </Link>
+                                > */}
+                                <h3 className="mb-1 text-2xl text-green-600 font-bold font-heading">
+                                  {post?.title}
+                                </h3>
+                                {/* </Link> */}
                                 <p className="text-gray-600 truncate">
                                   {post?.description}
                                 </p>

@@ -20,7 +20,7 @@ const Login = () => {
       email: "",
       password: "",
     },
-    onSubmit: values => {
+    onSubmit: (values) => {
       //dispath the action
       dispatch(loginUserAction(values));
     },
@@ -28,7 +28,7 @@ const Login = () => {
   });
 
   //redirect
-  const store = useSelector(state => state?.users);
+  const store = useSelector((state) => state?.users);
   const { userAuth, loading, serverErr, appErr } = store;
   if (userAuth) return <Redirect to={`/profile/${userAuth?._id}`} />;
   return (
@@ -162,7 +162,7 @@ const Login = () => {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <g clip-path="url(#clip0)">
+                    <g clipPath="url(#clip0)">
                       <path
                         d="M36.2292 29.2917H0.770833C0.345333 29.2917 0 28.9463 0 28.5208C0 28.0953 0.345333 27.75 0.770833 27.75H36.2292C36.6547 27.75 37 28.0953 37 28.5208C37 28.9463 36.6547 29.2917 36.2292 29.2917Z"
                         fill="white"

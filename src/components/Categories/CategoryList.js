@@ -11,7 +11,7 @@ const CategoryList = () => {
   useEffect(() => {
     dispatch(fetchCategoriesAction());
   }, [dispatch]);
-  const category = useSelector(state => state?.category);
+  const category = useSelector((state) => state?.category);
 
   const { categoryList, loading, appErr, serverErr } = category;
 
@@ -64,8 +64,8 @@ const CategoryList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {categoryList?.map(category => (
-                      <tr className="bg-gray-50">
+                    {categoryList?.map((category, index) => (
+                      <tr key={index} className="bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="flex-shrink-0 h-10 w-10">
@@ -90,13 +90,15 @@ const CategoryList = () => {
                           {category.title}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {<DateFormatter date={category?.createdAt} />}
+                          <DateFormatter date={category?.createdAt} />
                         </td>
-                        <Link to={`/update-category/${category?._id}`}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <PencilAltIcon className="h-5 text-indigo-500" />
-                          </td>
-                        </Link>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <Link to={`/update-category/${category?._id}`}>
+                            <span className="text-indigo-500">
+                              <PencilAltIcon className="h-5" />
+                            </span>
+                          </Link>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

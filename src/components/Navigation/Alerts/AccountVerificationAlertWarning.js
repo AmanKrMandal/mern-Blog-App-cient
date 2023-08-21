@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import { accVerificationSendTokenAction } from "../../../redux/slices/accountVerification/accVerificationSlices";
 
